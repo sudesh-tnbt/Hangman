@@ -1,16 +1,84 @@
 #Step 1 
 import random
 
+end_of_game = False
+lives = 6
 word_list = ["aardvark", "baboon", "camel"]
+stages = [r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', r'''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
 
-#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 word = random.choice(word_list)
 display = ["_"] * len(word)
-#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
-while "_" in display:
+
+while not end_of_game:
     guess = input("Guess a letter: ")
-    for i in range(len(word)):
-        if guess == word[i]:
-            display[i] = guess
-    print(display)
+    if guess in word:
+        for i in range(len(word)):
+            if guess == word[i]:
+                display[i] = guess
+    else:
+        lives -= 1
+    print(" ".join(display))
+    print(stages[lives])
+    if "_" not in display:
+        print("You won")
+        end_of_game = True
+    elif lives == 0:
+        print("You loose")
+        end_of_game = True
+
 
