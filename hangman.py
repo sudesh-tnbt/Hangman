@@ -7,10 +7,10 @@ word_list = ["aardvark", "baboon", "camel"]
 word = random.choice(word_list)
 display = ["_"] * len(word)
 #TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
-guess = input("Guess a letter: ")
-#TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
-for i in range(len(word)):
-    if guess == word[i]:
-        display[i] = guess
-print(display)
+while "_" in display:
+    guess = input("Guess a letter: ")
+    for i in range(len(word)):
+        if guess == word[i]:
+            display[i] = guess
+    print(display)
 
